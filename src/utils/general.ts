@@ -1,4 +1,6 @@
-export function formatToInternational(numberToFormat: string | number) {
+export function formatToInternational(
+  numberToFormat: string | number | bigint
+) {
   numberToFormat = Number(Number(numberToFormat).toFixed(2));
   const formattedNumber = new Intl.NumberFormat("en-US").format(numberToFormat);
   return formattedNumber;
@@ -51,4 +53,8 @@ export function roundUpToDecimalPlace(
 
 export function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function floatToBigInt(num: number) {
+  return BigInt(Math.floor(num));
 }

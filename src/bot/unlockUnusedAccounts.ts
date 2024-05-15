@@ -1,9 +1,9 @@
 import { getDocument, updateDocumentById } from "@/firebase";
-import { solanaConnection } from "@/rpc";
-import { StoredAccount } from "@/types/accounts";
+import { provider } from "@/rpc";
+import { StoredAccount } from "@/types";
 import { decrypt } from "@/utils/cryptography";
-import { errorHandler, log } from "@/utils/handlers";
-import { Keypair } from "@solana/web3.js";
+import { errorHandler } from "@/utils/handlers";
+import { ethers } from "ethers";
 
 export async function unlockUnusedAccounts() {
   const lockedAccounts = (await getDocument({
@@ -11,22 +11,18 @@ export async function unlockUnusedAccounts() {
     queries: [["locked", "==", true]],
   })) as StoredAccount[];
 
-  log("Unlocking accounts");
-
   for (const { id, secretKey } of lockedAccounts) {
     try {
-      const account = Keypair.fromSecretKey(
-        new Uint8Array(JSON.parse(decrypt(secretKey)))
-      );
-      const balance = await solanaConnection.getBalance(account.publicKey);
-      log(`Account balance - ${balance}`);
+      const decryptedKey = decrypt(secretKey);
+      const wallet = new ethers.Wallet(decryptedKey, provider);
+      const balance = (await wallet.getBalance()).toBigInt();
 
-      if (balance === 0) {
+      if (balance === BigInt(0)) {
         updateDocumentById({
           updates: { locked: false, lockedAt: null },
           collectionName: "accounts",
           id: id || "",
-        }).then(() => log(`Unlocked account ${id}`));
+        }).then(() => `Unlocked account ${wallet.address}`);
       }
     } catch (error) {
       errorHandler(error);

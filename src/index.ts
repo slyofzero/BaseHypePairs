@@ -7,7 +7,6 @@ import { errorHandler, log } from "./utils/handlers";
 import { BOT_TOKEN, DATA_URL, PHOTON_COOKIE } from "./utils/env";
 import { sendAlert } from "./bot/sendAlert";
 import { PhotonPairs } from "./types/livePairs";
-import { rpcConfig } from "./rpc";
 import { cleanUpHypePairs } from "./bot/cleanUpHypePairs";
 import { trackMC } from "./bot/trackMC";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
@@ -47,7 +46,6 @@ log("Bot instance ready");
 teleBot.use(chatMembers(adapter));
 
 (async function () {
-  rpcConfig();
   await Promise.all([syncSubscribers()]);
 
   teleBot.start({

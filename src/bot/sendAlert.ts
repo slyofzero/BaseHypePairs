@@ -15,10 +15,9 @@ import { CHANNEL_ID } from "@/utils/env";
 import { errorHandler, log } from "@/utils/handlers";
 import moment from "moment";
 import { PhotonPairData } from "@/types/livePairs";
-import { PublicKey } from "@solana/web3.js";
-import { solanaConnection } from "@/rpc";
 import { trackLpBurn } from "./trackLpBurn";
 import { promoText } from "@/vars/promo";
+import { getTotalSupply } from "@/utils/web3";
 
 export async function sendAlert(pairs: PhotonPairData[]) {
   try {
@@ -50,16 +49,6 @@ export async function sendAlert(pairs: PhotonPairData[]) {
           Number(age.replace("a minutes ago", "1")) ||
           Number(age.replace("a few seconds ago", "1"));
 
-        console.log(
-          symbol,
-          volume >= VOLUME_THRESHOLD,
-          ageMinutes <= AGE_THRESHOLD,
-          parseFloat(init_liq.eth) >= LIQUIDITY_THRESHOLD,
-          parseFloat(init_liq.eth) <= 5,
-          marketCap > 0,
-          parseFloat(cur_liq.eth) > parseFloat(init_liq.eth)
-        );
-
         if (hypeNewPairs[tokenAddress]) {
           trackLpBurn(pair);
         } else if (
@@ -77,45 +66,30 @@ export async function sendAlert(pairs: PhotonPairData[]) {
             audit,
           } = pair.attributes;
 
-          const token = new PublicKey(tokenAddress);
-          const addresses = await solanaConnection.getTokenLargestAccounts(
-            token
-          );
-          const totalSupply = (
-            await solanaConnection.getTokenSupply(new PublicKey(tokenAddress))
-          ).value.uiAmount;
+          const token = tokenAddress;
+          const totalSupply = await getTotalSupply(token);
 
-          // const priceData = // eslint-disable-next-line
-          //   (
-          //     await apiFetcher(
-          //       `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`
-          //     )
-          //   ).data as any;
-          // const price = parseFloat(priceData.pairs.at(0).priceUsd);
-          // const circulatingSupply = marketCap / price;
-          // console.log(circulatingSupply);
+          // const balances = addresses.value.slice(0, 10);
+          // let top2Hold = 0;
+          // let top10Hold = 0;
+          // const balancesText = balances
+          //   .map((balance, index) => {
+          //     const address = balance?.address.toString();
 
-          const balances = addresses.value.slice(0, 10);
-          let top2Hold = 0;
-          let top10Hold = 0;
-          const balancesText = balances
-            .map((balance, index) => {
-              const address = balance?.address.toString();
+          //     if (balance.uiAmount && totalSupply) {
+          //       const held = ((balance.uiAmount / totalSupply) * 100).toFixed(
+          //         2
+          //       );
+          //       if (index < 2) top2Hold += parseFloat(held);
+          //       top10Hold += parseFloat(held);
+          //       const percHeld = cleanUpBotMessage(held);
+          //       return `[${percHeld}%](https://solscan.io/account/${address})`;
+          //     }
+          //   })
+          //   .slice(0, 5)
+          //   .join(" \\| ");
 
-              if (balance.uiAmount && totalSupply) {
-                const held = ((balance.uiAmount / totalSupply) * 100).toFixed(
-                  2
-                );
-                if (index < 2) top2Hold += parseFloat(held);
-                top10Hold += parseFloat(held);
-                const percHeld = cleanUpBotMessage(held);
-                return `[${percHeld}%](https://solscan.io/account/${address})`;
-              }
-            })
-            .slice(0, 5)
-            .join(" \\| ");
-
-          if (top2Hold >= 70) continue;
+          // if (top2Hold >= 70) continue;
 
           // Links
           const tokenLink = `https://solscan.io/token/${tokenAddress}`;
@@ -192,9 +166,6 @@ Supply: ${cleanUpBotMessage(formatToInternational(totalSupply || 0))}
 💰 MCap: $${cleanUpBotMessage(formatToInternational(marketCap))}
 💵 Intial Lp: ${initliquidity} SOL *\\($${initliquidityUsd}\\)*
 🏦 Lp SOL: ${liquidity} SOL *\\($${liquidityUsd}\\)*
-👥 Top 10 Holders: Owns ${cleanUpBotMessage(top10Hold.toFixed(2))}%
-👥 Top Holders:
-${balancesText}
 
 🧠 Score: ${score}
 ${mintStatus} Ownership: ${mintText}

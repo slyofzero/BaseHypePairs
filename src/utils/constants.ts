@@ -1,4 +1,7 @@
 // export const VOLUME_THRESHOLD = 1000;
+
+import { ethers } from "ethers";
+
 // export const LIQUIDITY_THRESHOLD = 1;
 export const VOLUME_THRESHOLD = 100;
 export const LIQUIDITY_THRESHOLD = 0.3;
@@ -9,17 +12,22 @@ export const AGE_THRESHOLD = 30;
 export const PUBLIC_CHANNEL_DELAY = 40;
 
 export const transactionValidTime = 25 * 60;
-export const splitPaymentsWith = {
+export const splitPaymentsWith: {
+  [key: string]: { address: string; share: number };
+} = {
   dev: {
-    address: "Cd4qPLh7UAfKog5EyHv7ZXPyPCWuuyWbqk3LxRzpC1u4",
-    share: 0.4,
+    address: "0x0543730fac874d4d25A8cacfaE19559c2ee7e30d",
+    share: 0.35,
   },
-  me: {
-    address: "ELMXLPCtKjDVSTgNXdHBM7kHhC9yUzxBZYpmGfLsaGVC",
-    share: 0.3,
+  main: {
+    address: "0xC9C46598cc854f2857199e17f747e8A7F6f9c7E3",
+    share: 0.55,
   },
-  neo: {
-    address: "Aq8bbkfMtsVbTnJvkdU1ktib2ftfuHXzEbswDD7xM3LW",
-    share: 0.3,
+  revenue: {
+    address: "0x605fe1eE0FBF19f01FB0F6f7f6BADe121cDF2CA8",
+    share: 0.1,
   },
 };
+
+export const residueEth = ethers.utils.parseEther("0.000035").toBigInt();
+export const referralCommisionFee = 0.1;
