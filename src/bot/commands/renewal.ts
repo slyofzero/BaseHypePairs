@@ -21,7 +21,7 @@ export async function renewal(ctx: CommandContext<Context>) {
       for (const tier in renewalSubscriptionTiers) {
         const { text, amount } = renewalSubscriptionTiers[tier];
         keyboard = keyboard
-          .text(`${text} ${amount} SOL`, `subscribe-${tier}`)
+          .text(`${text} ${amount} ETH`, `subscribe-${tier}`)
           .row();
       }
 

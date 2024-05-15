@@ -69,7 +69,7 @@ export async function prepareSubscription(ctx: CallbackQueryContext<Context>) {
     const { id } = subscription;
     const hash = isSubscribed ? id : nanoid(10).replace(/-/g, "a");
     let text = `You have selected subscription for ${selectedTier.text}.
-The total cost - \`${selectedTier.amount}\` SOL
+The total cost - \`${selectedTier.amount}\` ETH
 
 Send the bill amount to the below address within 20 minutes, starting from this message generation. Once paid, click on "I have paid" to verify payment. If 20 minutes have already passed then please restart using /subscribe.
 

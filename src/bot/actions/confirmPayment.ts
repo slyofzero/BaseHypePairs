@@ -77,7 +77,7 @@ export async function confirmPayment(ctx: CallbackQueryContext<Context>) {
     // const account = web3.Keypair.fromSecretKey(
     //   new Uint8Array(JSON.parse(secretKey))
     // );
-    // const text = `Checking for payment of \`${selectedTier.amount}\` SOL for payment hash \`${hash}\`. You'd be notified as soon as the payment is confirmed.`;
+    // const text = `Checking for payment of \`${selectedTier.amount}\` ETH for payment hash \`${hash}\`. You'd be notified as soon as the payment is confirmed.`;
     // const confirmingMessage = await ctx.reply(cleanUpBotMessage(text), {
     //   parse_mode: "MarkdownV2",
     // });
@@ -93,7 +93,7 @@ export async function confirmPayment(ctx: CallbackQueryContext<Context>) {
     //       await sleep(30000);
     //       continue attemptsCheck;
     //     }
-    //     const logText = `Transaction ${hash} for trend verified with payment of ${selectedTier.amount} SOL`;
+    //     const logText = `Transaction ${hash} for trend verified with payment of ${selectedTier.amount} ETH`;
     //     log(logText);
     //     const currentTimestamp = Timestamp.now();
     //     const { renewalStatus, expiresAt } = subscriberData;
@@ -135,7 +135,7 @@ export async function confirmPayment(ctx: CallbackQueryContext<Context>) {
     //     //   .catch((e) => errorHandler(e));
     //     const confirmationText = `Confirmed payment of \`${cleanUpBotMessage(
     //       selectedTier.amount
-    //     )}\` SOL for a subscription of ${cleanUpBotMessage(
+    //     )}\` ETH for a subscription of ${cleanUpBotMessage(
     //       selectedTier.text
     //     )}\\. Your payment hash was \`${hash}\`\\. Use the below link to join the private channel \\-\n\n${hardCleanUpBotMessage(
     //       BOT_INVITE_LINK

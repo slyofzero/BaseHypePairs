@@ -94,14 +94,14 @@ export async function sendAlert(pairs: PhotonPairData[]) {
           // Links
           const tokenLink = `https://solscan.io/token/${tokenAddress}`;
           // const pairLink = `https://solscan.io/account/${address}`;
-          const dexScreenerLink = `https://dexscreener.com/solana/${address}`;
+          const dexScreenerLink = `https://dexscreener.com/base/${address}`;
           const rugCheckLink = `https://rugcheck.xyz/tokens/${tokenAddress}`;
           const solanaTradingBotLink = `https://t.me/SolTradingBot?start=${tokenAddress}`;
           const bonkBotLink = `https://t.me/bonkbot_bot?start=${tokenAddress}`;
           const magnumLink = `https://t.me/magnum_trade_bot?start=${tokenAddress}`;
           const bananaLink = `https://t.me/BananaGunSolana_bot?start=${tokenAddress}`;
           const unibot = `https://t.me/solana_unibot?start=r-reelchasin-${tokenAddress}`;
-          const photonLink = `https://photon-sol.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
+          const photonLink = `https://photon-base.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
 
           const now = Math.floor(Date.now() / 1e3);
 
@@ -154,7 +154,7 @@ export async function sendAlert(pairs: PhotonPairData[]) {
             : `Deployer owns ${(100 - lp_burned_perc).toFixed(0)}% of LP`;
 
           // Text
-          const text = `Powered By [Solana Hype Alerts](https://t.me/SolanaHypeTokenAlerts) \\| Hype Alert
+          const text = `Powered By [Base Hype Alerts](https://t.me/BaseHypePairsBot) \\| Hype Alert
       
 ${hardCleanUpBotMessage(name)} \\| [${hardCleanUpBotMessage(
             symbol
@@ -164,8 +164,8 @@ ${hardCleanUpBotMessage(name)} \\| [${hardCleanUpBotMessage(
       
 Supply: ${cleanUpBotMessage(formatToInternational(totalSupply || 0))}
 💰 MCap: $${cleanUpBotMessage(formatToInternational(marketCap))}
-💵 Intial Lp: ${initliquidity} SOL *\\($${initliquidityUsd}\\)*
-🏦 Lp SOL: ${liquidity} SOL *\\($${liquidityUsd}\\)*
+💵 Intial Lp: ${initliquidity} ETH *\\($${initliquidityUsd}\\)*
+🏦 Lp ETH: ${liquidity} ETH *\\($${liquidityUsd}\\)*
 
 🧠 Score: ${score}
 ${mintStatus} Ownership: ${mintText}
@@ -183,7 +183,7 @@ Buy:
 [Photon](${photonLink}) \\| [SolTradeBot](${solanaTradingBotLink}) \\| [BonkBot](${bonkBotLink})
 [Magnum](${magnumLink}) \\| [BananaGun](${bananaLink}) \\| [Unibot](${unibot})
 
-Powered By [Solana Hype Alerts](https://t.me/SolanaHypeTokenAlerts)${promoText}`;
+Powered By [Base Hype Alerts](https://t.me/BaseHypePairsBot)${promoText}`;
 
           try {
             const message = await teleBot.api.sendMessage(CHANNEL_ID, text, {
