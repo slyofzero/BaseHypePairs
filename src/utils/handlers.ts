@@ -10,7 +10,11 @@ export function stopScript(message: string, exitCode?: number) {
   process.exit(exitCode || 1);
 }
 
-export function errorHandler(e: unknown) {
+export function errorHandler(e: unknown, showStack?: boolean) {
   const error = e as Error;
   log(`Error: ${error.message}`);
+
+  if (showStack) {
+    log(`Stack: ${error.stack}`);
+  }
 }

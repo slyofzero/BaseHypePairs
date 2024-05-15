@@ -1,20 +1,31 @@
+interface LockedLiquidity {
+  [key: string]: number;
+}
+
 interface InitLiq {
+  eth: string;
   usd: string;
-  quote: string;
-  lp_amount: number;
   timestamp: number;
-  open_timestamp: number;
 }
 
 interface CurLiq {
-  quote: number;
+  eth: string;
   usd: string;
 }
 
 interface Audit {
-  mint_authority: boolean;
-  lp_burned_perc: number;
-  top_holders_perc: number;
+  buy_tax: string;
+  sell_tax: string;
+  honeypot: any;
+  is_open_source: any;
+  renounced: boolean;
+  is_not_proxy: boolean;
+  tax_modifiable: any;
+  lp_holders_count: number;
+  locked_liquidity: LockedLiquidity | null;
+  owner: string;
+  deployer: string;
+  is_flagged: boolean;
 }
 
 interface Socials {
@@ -35,11 +46,13 @@ interface Attributes {
   name: string;
   symbol: string;
   created_timestamp: number;
-  open_timestamp: number;
+  price_usd: string;
   init_liq: InitLiq;
   cur_liq: CurLiq;
   audit: Audit;
   socials: Socials;
+  isTradingEnabled: boolean;
+  low_sell_limit: boolean;
 }
 
 export interface PhotonPairData {

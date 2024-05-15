@@ -22,8 +22,9 @@ async function getData() {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const headers = {
-    Cookie: `_photon_ta=${PHOTON_COOKIE}`,
+    Cookie: `_photon_eth_production=${PHOTON_COOKIE}`,
   };
+
   await page.setExtraHTTPHeaders(headers);
   const response = await page.goto(DATA_URL || "", {
     waitUntil: "networkidle0",
