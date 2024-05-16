@@ -29,12 +29,12 @@ export async function trackLpBurn(pair: PhotonPairData) {
       };
 
       // Links
-      const tokenLink = `https://solscan.io/token/${tokenAddress}`;
-      const dexScreenerLink = `https://dexscreener.com/solana/${address}`;
+      const tokenLink = `https://basescan.org/token/${tokenAddress}`;
+      const dexScreenerLink = `https://dexscreener.com/base/${address}`;
       const birdEyeLink = `https://birdeye.so/token/${tokenAddress}?chain=solana`;
-      const photonLink = `https://photon-ETH.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
+      const photonLink = `https://photon-base.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
 
-      const text = `Powered By [Solana Hype Alerts](https://t.me/SolanaHypeTokenAlerts)
+      const text = `Powered By [Base Hype Alerts](https://t.me/BaseHypePairs)
       
 [${hardCleanUpBotMessage(symbol)}](${tokenLink}) LP tokens burnt 🔥🔥🔥 
 

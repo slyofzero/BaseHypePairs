@@ -92,16 +92,15 @@ export async function sendAlert(pairs: PhotonPairData[]) {
           // if (top2Hold >= 70) continue;
 
           // Links
-          const tokenLink = `https://solscan.io/token/${tokenAddress}`;
+          const tokenLink = `https://basescan.org/token/${tokenAddress}`;
           // const pairLink = `https://solscan.io/account/${address}`;
           const dexScreenerLink = `https://dexscreener.com/base/${address}`;
           const rugCheckLink = `https://rugcheck.xyz/tokens/${tokenAddress}`;
-          const solanaTradingBotLink = `https://t.me/SolTradingBot?start=${tokenAddress}`;
           const bonkBotLink = `https://t.me/bonkbot_bot?start=${tokenAddress}`;
           const magnumLink = `https://t.me/magnum_trade_bot?start=${tokenAddress}`;
           const bananaLink = `https://t.me/BananaGunSolana_bot?start=${tokenAddress}`;
           const unibot = `https://t.me/solana_unibot?start=r-reelchasin-${tokenAddress}`;
-          const photonLink = `https://photon-base.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
+          const photonLink = `https://photon-base.tinyastro.io/en/${tokenAddress}`;
 
           const now = Math.floor(Date.now() / 1e3);
 
@@ -180,7 +179,7 @@ Security: [RugCheck](${rugCheckLink})
 📊 [Photon](${photonLink}) \\| 📊 [DexScreener](${dexScreenerLink})
 
 Buy:
-[Photon](${photonLink}) \\| [SolTradeBot](${solanaTradingBotLink}) \\| [BonkBot](${bonkBotLink})
+[Photon](${photonLink}) \\| [BonkBot](${bonkBotLink})
 [Magnum](${magnumLink}) \\| [BananaGun](${bananaLink}) \\| [Unibot](${unibot})
 
 Powered By [Base Hype Alerts](https://t.me/BaseHypePairsBot)${promoText}`;

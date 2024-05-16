@@ -60,12 +60,12 @@ export async function trackMC() {
           };
 
           // Links
-          const tokenLink = `https://solscan.io/token/${tokenAddress}`;
-          const dexScreenerLink = `https://dexscreener.com/solana/${address}`;
-          const birdEyeLink = `https://birdeye.so/token/${tokenAddress}?chain=solana`;
-          const photonLink = `https://photon-ETH.tinyastro.io/en/r/@solhypealerts/${tokenAddress}`;
+          const tokenLink = `https://basescan.org/token/${tokenAddress}`;
+          const dexScreenerLink = `https://dexscreener.com/base/${address}`;
+          const birdEyeLink = `https://birdeye.so/token/${tokenAddress}?chain=base`;
+          const photonLink = `https://photon-base.tinyastro.io/en/${tokenAddress}`;
 
-          const text = `Powered By [Solana Hype Alerts](https://t.me/SolanaHypeTokenAlerts)
+          const text = `Powered By [Base Hype Alerts](https://t.me/BaseHypePairs)
 
 [${hardCleanUpBotMessage(symbol)}](${tokenLink}) jumped by ${cleanUpBotMessage(
             exactIncrease
