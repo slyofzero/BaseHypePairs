@@ -55,7 +55,7 @@ export async function sendAlert(pairs: PhotonPairData[]) {
           volume >= VOLUME_THRESHOLD &&
           ageMinutes <= AGE_THRESHOLD &&
           parseFloat(init_liq.eth) >= LIQUIDITY_THRESHOLD &&
-          parseFloat(init_liq.eth) <= 5 &&
+          parseFloat(init_liq.eth) <= 2 &&
           marketCap > 0 &&
           parseFloat(cur_liq.eth) > parseFloat(init_liq.eth)
         ) {
@@ -96,7 +96,6 @@ export async function sendAlert(pairs: PhotonPairData[]) {
           // const pairLink = `https://solscan.io/account/${address}`;
           const dexScreenerLink = `https://dexscreener.com/base/${address}`;
           const rugCheckLink = `https://rugcheck.xyz/tokens/${tokenAddress}`;
-          const bonkBotLink = `https://t.me/bonkbot_bot?start=${tokenAddress}`;
           const magnumLink = `https://t.me/magnum_trade_bot?start=${tokenAddress}`;
           const bananaLink = `https://t.me/BananaGunSolana_bot?start=${tokenAddress}`;
           const unibot = `https://t.me/solana_unibot?start=r-reelchasin-${tokenAddress}`;
@@ -179,8 +178,8 @@ Security: [RugCheck](${rugCheckLink})
 📊 [Photon](${photonLink}) \\| 📊 [DexScreener](${dexScreenerLink})
 
 Buy:
-[Photon](${photonLink}) \\| [BonkBot](${bonkBotLink})
-[Magnum](${magnumLink}) \\| [BananaGun](${bananaLink}) \\| [Unibot](${unibot})
+[Photon](${photonLink})  \\| [Unibot](${unibot})
+[Magnum](${magnumLink}) \\| [BananaGun](${bananaLink})
 
 Powered By [Base Hype Alerts](https://t.me/BaseHypePairsBot)${promoText}`;
 
