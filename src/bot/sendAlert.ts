@@ -136,7 +136,7 @@ export async function sendAlert(pairs: PhotonPairData[]) {
             : Object.values(locked_liquidity).reduce((a, b) => a + b);
           const mintStatus = !renounced ? "🟥" : "🟩";
           const mintText = !renounced ? "Not Renounced" : "Renounced";
-          const isLpStatusOkay = lp_burned_perc === 100;
+          const isLpStatusOkay = lp_burned_perc > 80;
           const lpStatus = isLpStatusOkay ? "🟩" : "⚠️";
           const issues = Number(!isLpStatusOkay) + Number(!renounced);
           const issuesText = issues === 1 ? `1 issue` : `${issues} issues`;

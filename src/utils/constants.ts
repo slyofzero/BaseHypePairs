@@ -3,7 +3,7 @@
 import { ethers } from "ethers";
 
 // export const LIQUIDITY_THRESHOLD = 1;
-export const VOLUME_THRESHOLD = 3000;
+export const VOLUME_THRESHOLD = 10000;
 export const LIQUIDITY_THRESHOLD = 0.3;
 export const CHECK_INTERVAL = 5 * 60;
 export const CLEANUP_INTERVAL = 30;
